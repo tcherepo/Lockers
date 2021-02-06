@@ -23,8 +23,8 @@ signals:
 private slots :
     void Reconnect();
     void onReadyRead();
-    void onErrorOccurred(QSerialPort::SerialPortError error);
     void onPortError();
+    /* it seemed more stable to implement my own error handling, rather then using QSerialPort::errorOccured */
 
 private:
     QByteArray composeUnlockMessage();

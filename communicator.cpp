@@ -173,14 +173,6 @@ void Communicator::onReadyRead()
 
 }
 
-void Communicator::onErrorOccurred(QSerialPort::SerialPortError error)
-{
-    Q_UNUSED(error)
-    qDebug() << "Serial port error: " << m_port.errorString();
-    m_retryonreconnect = true;
-    Reconnect();
-}
-
 void Communicator::onPortError()
 {
     qDebug() << "port error: " << m_port.errorString();
