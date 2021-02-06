@@ -11,6 +11,11 @@ ApplicationWindow {
     visible: true
     title: "Lockers"
 
+    Connections {
+        target: communicator
+        function onLockLocked() { action.enabled = true }
+    }
+
     ColumnLayout {
         anchors.fill: parent
 
@@ -27,6 +32,8 @@ ApplicationWindow {
                 value: 1
                 to: 3
                 stepSize: 1
+
+                onValueModified: communicator.setBoard(value)
             }
         }
 
@@ -43,6 +50,8 @@ ApplicationWindow {
                 value: 1
                 to: 25
                 stepSize: 24
+
+                onValueModified: communicator.setChannel(value)
             }
         }
 
@@ -51,6 +60,11 @@ ApplicationWindow {
             id: action
             enabled: true
             text: "Open single lock"
+
+            onClicked: {
+                enabled = false;
+                communicator.unlock();
+            }
         }
     }
 }
