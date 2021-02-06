@@ -48,8 +48,8 @@ ApplicationWindow {
                 id: channelspin
                 from: 1
                 value: 1
-                to: 25
-                stepSize: 24
+                to: 24
+                stepSize: 23
 
                 onValueModified: communicator.setChannel(value)
             }

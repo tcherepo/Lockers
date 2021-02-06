@@ -40,18 +40,9 @@ void Communicator::setChannel(uchar channel)
 
 void Communicator::unlock()
 {
-    m_retryonreconnect = false;
-    Reconnect();
-
     m_state = unlocking;
-
-    QByteArray unlockmessage = composeUnlockMessage();
-    m_port.write(unlockmessage);
-    if ( !m_port.flush() )
-    {
-        m_retryonreconnect = true;
-        emit portError();
-    }
+    m_retryonreconnect = true;
+    Reconnect();
 }
 
 void Communicator::poll()
