@@ -48,14 +48,7 @@ void Communicator::unlock()
 void Communicator::poll()
 {
     m_state = polling;
-
-    QByteArray pollmessage = composeStatusMesssage();
-    m_port.write(pollmessage);
-    if ( !m_port.flush() )
-    {
-        m_retryonreconnect = true;
-        emit portError();
-    }
+    retryCommand();
 }
 
 void Communicator::Reconnect()
